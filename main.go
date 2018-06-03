@@ -2,10 +2,10 @@ package main
 
 import (
 	"net/http"
-	"blog/route"
 	"fmt"
-	"blog/config"
 	"time"
+	"github.com/suyashkumar2409/ChitChat/config"
+	"github.com/suyashkumar2409/ChitChat/route"
 )
 
 func createMuxAndRegisterHandlers() (*http.ServeMux) {
