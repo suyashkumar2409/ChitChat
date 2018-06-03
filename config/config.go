@@ -23,7 +23,7 @@ func init(){
 }
 
 func loadConfig(){
-	file, err := os.Open("config.json")
+	file, err := os.Open("config/config.json")
 	if err != nil{
 		log.Fatalln("Failed to open config file", err)
 	}
@@ -36,7 +36,7 @@ func loadConfig(){
 }
 
 func loadLogger(){
-	file, err := os.OpenFile("../chitchat.log", os.O_CREATE | os.O_WRONLY | os.O_APPEND, 0666)
+	file, err := os.OpenFile("chitchat.log", os.O_CREATE | os.O_WRONLY | os.O_APPEND, 0666)
 	if err != nil{
 		log.Fatalln("Failed to open log file", err)
 	}

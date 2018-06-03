@@ -7,6 +7,7 @@ import (
 	"github.com/nu7hatch/gouuid"
 	"fmt"
 	"crypto/sha1"
+	_ "github.com/lib/pq"
 )
 
 // should this be a global variable?

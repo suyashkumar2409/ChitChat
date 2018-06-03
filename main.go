@@ -2,10 +2,10 @@ package main
 
 import (
 	"net/http"
-	"blog/route"
 	"fmt"
-	"blog/config"
 	"time"
+	"github.com/suyashkumar2409/ChitChat/config"
+	"github.com/suyashkumar2409/ChitChat/route"
 )
 
 func createMuxAndRegisterHandlers() (*http.ServeMux) {
@@ -33,6 +33,7 @@ func createMuxAndRegisterHandlers() (*http.ServeMux) {
 
 func main() {
 	fmt.Println("Chitchat", config.GetVersion(), "started at", config.GetAddress())
+	config.Info("Server Started")
 
 	mux := createMuxAndRegisterHandlers()
 
