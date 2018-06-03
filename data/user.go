@@ -28,8 +28,11 @@ func (user *User) Create() error{
 	if err != nil{
 		return err
 	}
-
-	return stmt.QueryRow(createUUID(), user.Name, user.Email, Encrypt(user.Password), time.Now()).Scan(
+	uuid, err := createUUID()
+	if err != nil{
+		return err
+	}
+	return stmt.QueryRow(uuid, user.Name, user.Email, Encrypt(user.Password), time.Now()).Scan(
 		&user.Id, &user.Uuid, &user.CreatedAt)
 }
 
@@ -44,7 +47,11 @@ func (user *User) CreateSession() (Session, error){
 	if err != nil{
 		return sess, err
 	}
-	err = stmt.QueryRow(createUUID(), user.Email, user.Id, time.Now()).Scan(&sess.Id, &sess.Uuid, &sess.CreatedAt)
+	uuid, err := createUUID()
+	if err != nil{
+		return sess, err
+	}
+	err = stmt.QueryRow(uuid, user.Email, user.Id, time.Now()).Scan(&sess.Id, &sess.Uuid, &sess.CreatedAt)
 	return sess, err
 }
 
@@ -63,7 +70,11 @@ func (user *User) CreateThread(topic string) (Thread, error){
 	if err != nil{
 		return t, err
 	}
-	err = stmt.QueryRow(createUUID(), topic, user.Id, time.Now()).Scan(&t.Id, &t.Uuid, &t.Topic, &t.UserId, &t.CreatedAt)
+	uuid, err := createUUID()
+	if err != nil{
+		return t, err
+	}
+	err = stmt.QueryRow(uuid, topic, user.Id, time.Now()).Scan(&t.Id, &t.Uuid, &t.Topic, &t.UserId, &t.CreatedAt)
 	return t, err
 }
 
@@ -76,7 +87,11 @@ func (user *User) CreatePost(t Thread, body string) (Post, error){
 		return post, err
 	}
 
-	err = stmt.QueryRow(createUUID(), body, user.Id, t.Id, time.Now()).
+	uuid, err := createUUID()
+	if err != nil{
+		return post, err
+	}
+	err = stmt.QueryRow(uuid, body, user.Id, t.Id, time.Now()).
 		Scan(&post.Id, &post.Uuid, &post.Body, &post.UserId, &post.ThreadId, &post.CreatedAt)
 	return post, err
 }

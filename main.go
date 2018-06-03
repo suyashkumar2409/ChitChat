@@ -33,6 +33,7 @@ func createMuxAndRegisterHandlers() (*http.ServeMux) {
 
 func main() {
 	fmt.Println("Chitchat", config.GetVersion(), "started at", config.GetAddress())
+	config.Info("Server Started")
 
 	mux := createMuxAndRegisterHandlers()
 

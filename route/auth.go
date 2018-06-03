@@ -60,7 +60,7 @@ func Authenticate(w http.ResponseWriter, r * http.Request){
 		config.Error(err, "Could not parse form")
 		errorMessage(w, r, "Error encountered while logging in")
 	}
-	user, err := data.GetUserByEmail(r.FormValue("email"))
+	user, err := data.GetUserByEmail(r.PostFormValue("email"))
 	if err != nil{
 		config.Warning(err, "Cannot find user")
 	}
